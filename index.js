@@ -60,3 +60,6 @@ const str = 'to Be or NoT To bE';
 
 countVowels=word=>word.split("").reduce((c,l)=>(["a","e","i","o","u"].indexOf(l.toLowerCase())+1)?++c:c,0);
  console.log(countVowels(str))
+
+
+ 1111
