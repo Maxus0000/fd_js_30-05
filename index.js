@@ -1,64 +1,54 @@
-"use strict";
-const arrCorency = ["uah", "gbr", "usd"];
-class Product {
-  constructor(name, price, corency) {
-    this.name = name;
-    this.price = price;
-    this.corency = corency;
-    this.available = true;
-  }
-  get price() {
-    return this._price;
-  }
-  set price(value) {
-    if (typeof value !== "number") {
-      throw new TypeError("must be number");
-    }
-    if (value > 1000 || value < 0) {
-      throw new RangeError(" must be 0...1000");
-    }
-    this._price = value;
-  }
-  set corency(value) {
-    if (arrCorency.includes(value) === false) {
-      throw new Error(" invalid value ");
-    }
-    this._corency = value;
-  }
-  static isProduct(obj) {
-    return obj instanceof Product;
-  }
-}
-const milk = new Product("korovka", 35, "usd");
-console.log(milk);
+//константная
 
-class OnlineProduct extends Product {
-  constructor(name, price, corency, delivery) {
-    super(name, price, corency);
-    this.delivery = delivery;
-  }
-}
+const arr = [5, 3, 6, 7, 2, 9, 8, 1, 6];
 
-// создать класс покупатель у которого будет сво-во кэш и метод купить товар( товар - товар и когда хватает денег)
+console.log(arr[arr.length - 1]);
 
-class Buyer {
-  constructor(cash) {
-    this.cash = cash;
-  }
-  getProduct(obj) {
-    if (Product.isProduct(obj)=== false) {
-      throw new TypeError(' not product')
-    }
-    if (obj.price > this.cash) {
-      throw new RangeError ( ' need more money')
-    }
-    if (obj.available === false) {
-      throw new Error(' not availeble');
-    }
-    obj.available = false;
-  }
-}
+// логарифмическая
 
-const buyer = new Buyer(40)
-buyer.getProduct(milk)
-buyer.getProduct(milk)
+const arrSort = [2, 3, 5, 6, 1, 9, 8, 7];
+const binarySearch = (arr, key) => {
+  let start = 0;
+  let end = arr.length - 1;
+  let middle;
+  while (start <= end) {
+    middle = Math.round((start + end) / 2);
+    if (arr[middle] === key) {
+      return middle;
+    }
+    if (arr[middle] < key) {
+      start = middle + 1;
+    } else {
+      end = middle - 1;
+    }
+  }
+  return -1;
+};
+
+console.log(binarySearch(arrSort,7 ));
+
+// линейная
+
+const linearSearch = (arr, key) => {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === key) {
+      return i;
+    }
+  }
+  return -1;
+};
+
+console.log(linearSearch(arr, 4));
+
+// квадратичная
+
+const createMultipleTable = (limit = 10) => {
+  const table = [];
+  for (let i = 1; i <= limit; i++) {
+    for (let j = 1; j <= limit; j++) {
+      table.push("${i}*${j}=${i*j}");
+    }
+  }
+  return { table: table, length: table.length };
+};
+console.log(createMultipleTable(30));
